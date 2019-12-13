@@ -28,3 +28,15 @@ val mReceiver = object : BroadcastReceiver() {
             }
         }
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        
+        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mReceiver, filter);
+    }
+
+   override fun onDestroy() {
+        super.onDestroy()
+       
+        unregisterReceiver(mReceiver)
+    }
